@@ -1,6 +1,9 @@
 # --------------------------------------------
 #  Modelo de Random Forest
 # --------------------------------------------
+
+# EJEMPLO 1
+
 library(randomForest)
 
 datos_calisificacion_coneval <- read_excel("datos_calisificacion_coneval.xlsx")
@@ -24,3 +27,26 @@ importance(modelo_rf)
 
 # La importancia en un gráfico
 varImpPlot(modelo_rf)
+
+
+# EJEMPLO 2
+
+
+# Segmentar poblaciones y asignar recursos
+# ¿Cómo clasificar a beneficiarixs de un programa según necesidades?
+# Random Forest para detectar patrones y crear perfiles.
+
+library(caret)
+
+# Modelo Random Forest
+modelo_becas <- train(
+  necesita_beca ~ promedio + ingreso + escuela_publica + trabaja,
+  data = datos,
+  method = "rf"
+)
+
+# Resultado
+modelo_becas
+
+# Importancia de las variables
+varImp(modelo_becas)
